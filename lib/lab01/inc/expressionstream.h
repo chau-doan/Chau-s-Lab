@@ -1,5 +1,5 @@
-#ifndef CMPE126S18_LABS_STSTRING_H
-#define CMPE126S18_LABS_STSTRING_H
+#ifndef CMPE126S20_LABS_STSTRING_H
+#define CMPE126S20_LABS_STSTRING_H
 
 
 #include <string>
@@ -32,4 +32,4 @@ namespace lab1 {
         bool next_token_is_paren_close();
     };
 }
-#endif //CMPE126S18_LABS_STSTRING_H
+#endif //CMPE126S20_LABS_STSTRING_H

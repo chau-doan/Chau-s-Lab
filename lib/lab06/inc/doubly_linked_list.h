@@ -1,5 +1,5 @@
-#ifndef CMPE126S18_LABS_DOUBLY_LINKED_LIST_H
-#define CMPE126S18_LABS_DOUBLY_LINKED_LIST_H
+#ifndef CMPE126S20_LABS_DOUBLY_LINKED_LIST_H
+#define CMPE126S20_LABS_DOUBLY_LINKED_LIST_H
 #include "node.h"
 #include <vector>
 #include <iostream>
@@ -43,4 +43,4 @@ namespace lab6{
     };
 }
 
-#endif //CMPE126S18_LABS_DOUBLY_LINKED_LIST_H
+#endif //CMPE126S20_LABS_DOUBLY_LINKED_LIST_H

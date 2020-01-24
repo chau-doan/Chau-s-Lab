@@ -1,5 +1,5 @@
-#ifndef CMPE126S18_LABS_HUFFMAN_TREE_H
-#define CMPE126S18_LABS_HUFFMAN_TREE_H
+#ifndef CMPE126S20_LABS_HUFFMAN_TREE_H
+#define CMPE126S20_LABS_HUFFMAN_TREE_H
 
 #include "node.h"
 #include <string>
@@ -25,4 +25,4 @@ namespace lab9{
     };
 }
 
-#endif //CMPE126S18_LABS_HUFFMAN_TREE_H
+#endif //CMPE126S20_LABS_HUFFMAN_TREE_H

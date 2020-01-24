@@ -1,5 +1,5 @@
-#ifndef CMPE126S18_LABS_LIB_LAB5_NODE_H
-#define CMPE126S18_LABS_LIB_LAB5_NODE_H
+#ifndef CMPE126S20_LABS_LIB_LAB5_NODE_H
+#define CMPE126S20_LABS_LIB_LAB5_NODE_H
 #include <string>
 
 namespace lab5 {

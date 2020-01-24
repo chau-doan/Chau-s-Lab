@@ -1,5 +1,5 @@
-#ifndef CMPE126S18_LABS_ENTRY_H
-#define CMPE126S18_LABS_ENTRY_H
+#ifndef CMPE126S20_LABS_ENTRY_H
+#define CMPE126S20_LABS_ENTRY_H
 
 #include <string>
 namespace lab9{
@@ -13,4 +13,4 @@ namespace lab9{
         }
     };
 }
-#endif //CMPE126S18_LABS_ENTRY_H
+#endif //CMPE126S20_LABS_ENTRY_H

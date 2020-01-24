@@ -1,5 +1,5 @@
-#ifndef CMPE126S18_LABS_CALCULATOR_H
-#define CMPE126S18_LABS_CALCULATOR_H
+#ifndef CMPE126S20_LABS_CALCULATOR_H
+#define CMPE126S20_LABS_CALCULATOR_H
 
 #include "lifo.h"
 #include "fifo.h"
@@ -22,4 +22,4 @@ namespace lab4{
     };
 }
 
-#endif //CMPE126S18_LABS_CALCULATOR_H
+#endif //CMPE126S20_LABS_CALCULATOR_H

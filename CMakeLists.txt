@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9)
-project(cmpe126s18_labs)
+project(cmpe126s20_labs)
 
 if(WIN32)
     if (CYGWIN)

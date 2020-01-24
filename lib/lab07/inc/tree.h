@@ -1,5 +1,5 @@
-#ifndef CMPE126S18_LABS_TREE_H
-#define CMPE126S18_LABS_TREE_H
+#ifndef CMPE126S20_LABS_TREE_H
+#define CMPE126S20_LABS_TREE_H
 #include "node.h"
 #include <iostream>
 #include <vector>
@@ -38,4 +38,4 @@ namespace lab7 {
     };
 }
 
-#endif //CMPE126S18_LABS_TREE_H
+#endif //CMPE126S20_LABS_TREE_H

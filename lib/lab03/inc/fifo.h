@@ -1,5 +1,5 @@
-#ifndef CMPE126S18_LABS_QUEUE_H
-#define CMPE126S18_LABS_QUEUE_H
+#ifndef CMPE126S20_LABS_QUEUE_H
+#define CMPE126S20_LABS_QUEUE_H
 #include "stringVector.h"
 
 namespace lab3 {

@@ -1,5 +1,5 @@
-#ifndef CMPE126S18_LABS_HASH_TABLE_H
-#define CMPE126S18_LABS_HASH_TABLE_H
+#ifndef CMPE126S20_LABS_HASH_TABLE_H
+#define CMPE126S20_LABS_HASH_TABLE_H
 
 #include <string>
 #include <vector>
@@ -40,4 +40,4 @@ namespace lab8{
     };
 }
 
-#endif //CMPE126S18_LABS_HASH_TABLE_H
+#endif //CMPE126S20_LABS_HASH_TABLE_H

@@ -1,5 +1,5 @@
-#ifndef CMPE126S18_LABS_LIB_LAB6_NODE_H
-#define CMPE126S18_LABS_LIB_LAB6_NODE_H
+#ifndef CMPE126S20_LABS_LIB_LAB6_NODE_H
+#define CMPE126S20_LABS_LIB_LAB6_NODE_H
 
 namespace lab6{
     class node{
@@ -12,4 +12,4 @@ namespace lab6{
     };
 }
 
-#endif //CMPE126S18_LABS_NODE_H
+#endif //CMPE126S20_LABS_NODE_H
