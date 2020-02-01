@@ -592,5 +592,6 @@ TEST_F(Lab01Fixture, stream3check){
     EXPECT_TRUE(stream3->next_token_is_paren_close());
     stream3->get_next_token();
     EXPECT_EQ(")",stream3->get_current_token());
+    EXPECT_EQ("\0",stream3->get_next_token());
 
 }
