@@ -744,6 +744,5 @@ TEST_F(Lab01Fixture, CheckNextType2) {
     EXPECT_FALSE(stream4->next_token_is_int());
     stream4->get_next_token();
     EXPECT_TRUE(stream4->next_token_is_int());
-    EXPECT_FALSE(stream4->next_token_is_op());
     stream4->get_next_token();
 }
