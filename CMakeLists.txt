@@ -21,8 +21,8 @@ set(SOURCE_FILES main.cpp)
 add_executable(labs_main ${SOURCE_FILES})
 
 include_directories(lib/lab01/inc
-        #[[lib/lab02/inc
-        lib/lab03/inc
+        lib/lab02/inc
+        #[[lib/lab03/inc
         lib/lab04/inc
         lib/lab05/inc
         lib/lab06/inc
@@ -31,8 +31,8 @@ include_directories(lib/lab01/inc
         )
 
 add_subdirectory(lib/lab01 lab1_lib)
-#[[add_subdirectory(lib/lab02 lab2_lib)
-add_subdirectory(lib/lab03 lab3_lib)
+add_subdirectory(lib/lab02 lab2_lib)
+#[[add_subdirectory(lib/lab03 lab3_lib)
 add_subdirectory(lib/lab04 lab4_lib)
 add_subdirectory(lib/lab05 lab5_lib)
 add_subdirectory(lib/lab06 lab6_lib)
@@ -43,8 +43,8 @@ add_subdirectory(test)
 
 target_link_libraries(labs_main
         lab1_lib
-        #[[lab2_lib
-        lab3_lib
+        lab2_lib
+        #[[lab3_lib
         lab4_lib
         lab5_lib
         lab6_lib
