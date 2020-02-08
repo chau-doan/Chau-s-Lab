@@ -117,7 +117,7 @@ TEST_F(Lab02Fixture, stringVector_append_access_test) {
 
 TEST_F(Lab02Fixture, stringVector_opEq_access_test) {
     container1 = new lab2::stringVector();
-    lab2::stringVector* container2 = new lab2::stringVector();
+    lab2::stringVector * container2 = new lab2::stringVector();
 
     container1->append("some string");
     container1->append("some other string");
@@ -238,4 +238,127 @@ TEST_F(Lab02Fixture, stringVector_sort_access_test) {
     EXPECT_EQ("welcome",container1->operator[](24));
     EXPECT_EQ("xeon",container1->operator[](25));
     EXPECT_EQ("yellow",container1->operator[](26));
+}
+
+TEST_F(Lab02Fixture, Just_test){
+    container1 = new lab2::stringVector;
+
+    container1 -> append("0");
+    container1 -> append("1");
+    container1 -> append("2");
+    container1 -> append("3");
+    container1 -> append("4");
+
+    EXPECT_EQ(5,container1->size());
+    EXPECT_FALSE(container1->empty());
+    EXPECT_EQ("0",container1->operator[](0));
+    EXPECT_EQ("1",container1->operator[](1));
+    EXPECT_EQ("2",container1->operator[](2));
+    EXPECT_EQ("3",container1->operator[](3));
+    EXPECT_EQ("4",container1->operator[](4));
+
+    for(int i=0; i< container1->size();i++){
+        container1->operator[](i) = container1->operator[](container1->size() - 1 - i);
+    }
+
+    EXPECT_EQ("4",container1->operator[](0));
+    EXPECT_EQ("3",container1->operator[](1));
+    EXPECT_EQ("2",container1->operator[](2));
+    EXPECT_EQ("3",container1->operator[](3));
+    EXPECT_EQ("4",container1->operator[](4));
+
+    container1 -> sort();
+    EXPECT_EQ("2",container1->operator[](0));
+    EXPECT_EQ("3",container1->operator[](1));
+    EXPECT_EQ("3",container1->operator[](2));
+    EXPECT_EQ("4",container1->operator[](3));
+    EXPECT_EQ("4",container1->operator[](4));
+}
+
+TEST_F(Lab02Fixture, test_append ){
+    container1 = new lab2::stringVector;
+
+    EXPECT_TRUE(container1->empty());
+    EXPECT_ANY_THROW(container1 -> operator[](0));
+    EXPECT_EQ(0,container1->size());
+
+    container1->append("First string");
+    EXPECT_EQ("First string", container1->operator[](0));
+    EXPECT_EQ(1,container1->size());
+
+    container1->append("Second string");
+    EXPECT_EQ("First string", container1->operator[](0));
+    EXPECT_EQ("Second string", container1->operator[](1));
+    EXPECT_EQ(2,container1->size());
+
+    container1->append("Third string");
+    EXPECT_EQ("First string", container1->operator[](0));
+    EXPECT_EQ("Second string", container1->operator[](1));
+    EXPECT_EQ("Third string", container1->operator[](2));
+    EXPECT_EQ(3,container1->size());
+
+    container1->append("Fourth string");
+    EXPECT_EQ("First string", container1->operator[](0));
+    EXPECT_EQ("Second string", container1->operator[](1));
+    EXPECT_EQ("Third string", container1->operator[](2));
+    EXPECT_EQ("Fourth string",container1->operator[](3));
+    EXPECT_EQ(4,container1->size());
+
+    container1->swap(0,3);
+    container1->swap(1,2);
+    EXPECT_EQ("Fourth string",container1->operator[](0));
+    EXPECT_EQ("Third string", container1->operator[](1));
+    EXPECT_EQ("Second string", container1->operator[](2));
+    EXPECT_EQ("First string",container1->operator[](3));
+
+    container1->reserve(2);
+    EXPECT_EQ("Fourth string",container1->operator[](0));
+    EXPECT_EQ("Third string", container1->operator[](1));
+    EXPECT_ANY_THROW(container1 -> operator[](2));
+    EXPECT_EQ(2,container1->size());
+    EXPECT_NO_THROW(container1->operator[](1));
+
+}
+
+TEST_F(Lab02Fixture, Copy_test) {
+    container1 = new lab2::stringVector;
+
+    container1->append("0");
+    container1->append("1");
+    container1->append("2");
+    container1->append("3");
+    container1->append("4");
+
+    lab2::stringVector *container2 = new lab2::stringVector();
+    EXPECT_TRUE(container2->empty());
+
+    container2->operator=(*container1);
+
+    delete container1;
+    container1 = new lab2::stringVector;
+    EXPECT_TRUE(container1->empty());
+    EXPECT_ANY_THROW(container1->operator[](0));
+
+    container1->append("First string");
+    container1->append("Second string");
+    container1->append("Third string");
+    container1->append("Fourth string");
+    EXPECT_NO_THROW(container1->operator[](3));
+    EXPECT_ANY_THROW(container1->operator[](4));
+
+    EXPECT_EQ("First string", container1->operator[](0));
+    EXPECT_EQ("Second string", container1->operator[](1));
+    EXPECT_EQ("Third string", container1->operator[](2));
+    EXPECT_EQ("Fourth string", container1->operator[](3));
+    EXPECT_EQ(4, container1->size());
+
+
+    EXPECT_EQ(5, container2->size());
+    EXPECT_FALSE(container2->empty());
+    EXPECT_EQ("0", container2->operator[](0));
+    EXPECT_EQ("1", container2->operator[](1));
+    EXPECT_EQ("2", container2->operator[](2));
+    EXPECT_EQ("3", container2->operator[](3));
+    EXPECT_EQ("4", container2->operator[](4));
+
 }
