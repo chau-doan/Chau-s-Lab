@@ -114,23 +114,17 @@ namespace lab2 {
             for(int j = 0; j < i; j++){
                 if(islower(data[j].at(0)) && islower(data[j+1].at(0))){
                     if((data[j].compare(data[j + 1])) > 0){
-                        temp = data[j];
-                        data[j] = data[j+1];
-                        data[j+1] = temp;
+                        this->swap(j,j+1);
                     }
                 }
 
                 else if(isupper(data[j].at(0)) && islower(data[j+1].at(0))){
-                    temp = data[j];
-                    data[j] = data[j+1];
-                    data[j+1] = temp;
+                    this->swap(j,j+1);
                 }
 
                 else if(isupper(data[j].at(0)) && isupper(data[j+1].at(0))){
                     if((data[j].compare(data[j + 1])) > 0){
-                        temp = data[j];
-                        data[j] = data[j+1];
-                        data[j+1] = temp;
+                        this->swap(j,j+1);
                     }
                 }
             }
