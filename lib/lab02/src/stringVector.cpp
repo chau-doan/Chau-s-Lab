@@ -108,16 +108,30 @@ namespace lab2 {
     }
 
     void stringVector::sort() {
-        std::string str;
+        std::string temp;
 
         for(int i= (length - 1) ; i > 0; i--){
-
             for(int j = 0; j < i; j++){
-                if((data[j].compare(data[j + 1])) > 0){
-//Swap
-                    str = data[j];
+                if(islower(data[j].at(0)) && islower(data[j+1].at(0))){
+                    if((data[j].compare(data[j + 1])) > 0){
+                        temp = data[j];
+                        data[j] = data[j+1];
+                        data[j+1] = temp;
+                    }
+                }
+
+                else if(isupper(data[j].at(0)) && islower(data[j+1].at(0))){
+                    temp = data[j];
                     data[j] = data[j+1];
-                    data[j+1] = str;
+                    data[j+1] = temp;
+                }
+
+                else if(isupper(data[j].at(0)) && isupper(data[j+1].at(0))){
+                    if((data[j].compare(data[j + 1])) > 0){
+                        temp = data[j];
+                        data[j] = data[j+1];
+                        data[j+1] = temp;
+                    }
                 }
             }
         }

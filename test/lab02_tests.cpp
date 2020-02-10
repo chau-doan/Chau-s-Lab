@@ -240,41 +240,6 @@ TEST_F(Lab02Fixture, stringVector_sort_access_test) {
     EXPECT_EQ("yellow",container1->operator[](26));
 }
 
-TEST_F(Lab02Fixture, Just_test){
-    container1 = new lab2::stringVector;
-
-    container1 -> append("0");
-    container1 -> append("1");
-    container1 -> append("2");
-    container1 -> append("3");
-    container1 -> append("4");
-
-    EXPECT_EQ(5,container1->size());
-    EXPECT_FALSE(container1->empty());
-    EXPECT_EQ("0",container1->operator[](0));
-    EXPECT_EQ("1",container1->operator[](1));
-    EXPECT_EQ("2",container1->operator[](2));
-    EXPECT_EQ("3",container1->operator[](3));
-    EXPECT_EQ("4",container1->operator[](4));
-
-    for(int i=0; i< container1->size();i++){
-        container1->operator[](i) = container1->operator[](container1->size() - 1 - i);
-    }
-
-    EXPECT_EQ("4",container1->operator[](0));
-    EXPECT_EQ("3",container1->operator[](1));
-    EXPECT_EQ("2",container1->operator[](2));
-    EXPECT_EQ("3",container1->operator[](3));
-    EXPECT_EQ("4",container1->operator[](4));
-
-    container1 -> sort();
-    EXPECT_EQ("2",container1->operator[](0));
-    EXPECT_EQ("3",container1->operator[](1));
-    EXPECT_EQ("3",container1->operator[](2));
-    EXPECT_EQ("4",container1->operator[](3));
-    EXPECT_EQ("4",container1->operator[](4));
-}
-
 TEST_F(Lab02Fixture, test_append ){
     container1 = new lab2::stringVector;
 
@@ -361,4 +326,43 @@ TEST_F(Lab02Fixture, Copy_test) {
     EXPECT_EQ("3", container2->operator[](3));
     EXPECT_EQ("4", container2->operator[](4));
 
+}
+
+TEST_F(Lab02Fixture, Test_sort1) {
+    container1 = new lab2::stringVector();
+
+    container1->append("america");
+    container1->append("Corona");
+    container1->append("car");
+    container1->append("Ape");
+    container1->append("America");
+    container1->append("cars");
+
+    container1->sort();
+
+    EXPECT_EQ("america",container1->operator[](0));
+    EXPECT_EQ("car",container1->operator[](1));
+    EXPECT_EQ("cars",container1->operator[](2));
+    EXPECT_EQ("America",container1->operator[](3));
+    EXPECT_EQ("Ape",container1->operator[](4));
+    EXPECT_EQ("Corona",container1->operator[](5));
+}
+
+TEST_F(Lab02Fixture, Test_sort2) {
+    container1 = new lab2::stringVector();
+    container1->append("aaaaa");
+    container1->append("AAA");
+    container1->append("AAAA");
+    container1->append("aa");
+    container1->append("bbbb");
+    container1->append("a");
+
+    container1->sort();
+
+    EXPECT_EQ("a",container1->operator[](0));
+    EXPECT_EQ("aa",container1->operator[](1));
+    EXPECT_EQ("aaaaa",container1->operator[](2));
+    EXPECT_EQ("bbbb",container1->operator[](3));
+    EXPECT_EQ("AAA",container1->operator[](4));
+    EXPECT_EQ("AAAA",container1->operator[](5));
 }
