@@ -34,6 +34,8 @@ TEST_F(Lab03Fixture, fifo_input_con_top_test){
     delete(FIFO_underTest);
     FIFO_underTest = new lab3::fifo("test string");
     EXPECT_EQ("test string",FIFO_underTest->top());
+
+
 }
 
 TEST_F(Lab03Fixture, lifo_input_con_top_test){
@@ -254,4 +256,33 @@ TEST_F(Lab03Fixture, Fifo_loopback_test) {
     }
     ASSERT_EQ("test Input", fifo_UT.top());
     ASSERT_NO_THROW(fifo_UT.dequeue());
+}
+
+TEST_F(Lab03Fixture, Test_throw_for_queue){
+    delete (FIFO_underTest);
+    FIFO_underTest = new lab3::fifo;
+    EXPECT_TRUE(FIFO_underTest->is_empty());
+    EXPECT_ANY_THROW(FIFO_underTest->top());
+    EXPECT_ANY_THROW(FIFO_underTest->dequeue());
+    for (int i=0; i<100 ; i++)
+        EXPECT_NO_THROW(FIFO_underTest->enqueue("test string"));
+    EXPECT_ANY_THROW(FIFO_underTest->enqueue("test string"));
+    EXPECT_EQ(100,FIFO_underTest->size());
+    for (int i=0; i<100 ; i++)
+        EXPECT_NO_THROW(FIFO_underTest->dequeue());
+    EXPECT_ANY_THROW(FIFO_underTest->dequeue());
+}
+
+TEST_F(Lab03Fixture, Test_throw_for_stack){
+    delete(LIFO_underTest);
+    LIFO_underTest = new lab3::lifo;
+    EXPECT_TRUE(LIFO_underTest->is_empty());
+    EXPECT_ANY_THROW(LIFO_underTest->top());
+    for (int i=0; i<100 ; i++)
+        EXPECT_NO_THROW(LIFO_underTest->push("test string"));
+    EXPECT_ANY_THROW(LIFO_underTest->push("test string"));
+    EXPECT_EQ(100,LIFO_underTest->size());
+    for (int i=0; i<100 ; i++)
+        EXPECT_NO_THROW(LIFO_underTest->pop());
+    EXPECT_ANY_THROW(LIFO_underTest->pop());
 }
