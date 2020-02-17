@@ -60,7 +60,7 @@ namespace lab3{
         if (index == 100)
             throw std::out_of_range ("Stack already full");
         else
-        if (index != lifo_storage.size() && index!=0) {
+        if (index != lifo_storage.size()) {
             lifo_storage[index] = input;
             index++;
         }

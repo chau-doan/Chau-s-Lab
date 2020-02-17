@@ -285,4 +285,6 @@ TEST_F(Lab03Fixture, Test_throw_for_stack){
     for (int i=0; i<100 ; i++)
         EXPECT_NO_THROW(LIFO_underTest->pop());
     EXPECT_ANY_THROW(LIFO_underTest->pop());
+    LIFO_underTest->push("abc");
+    EXPECT_EQ("abc", LIFO_underTest->top());
 }
