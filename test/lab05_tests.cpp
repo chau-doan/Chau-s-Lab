@@ -69,7 +69,9 @@ TEST_F(Lab05Fixture, linked_insert_test) {//make sure valid insertions run witho
 
 TEST_F(Lab05Fixture, linked_append_test) {//make sure valid appends run without crashing
     input = "test string";
+    EXPECT_TRUE(list_UT->isEmpty());
     for(int i=0; i<200; ++i) EXPECT_NO_THROW(list_UT->append(input)) << "failed on iteration: " << i << "\n";
+    EXPECT_EQ(200, list_UT->listSize());
 }
 
 
@@ -77,7 +79,7 @@ TEST_F(Lab05Fixture, linked_insert_append_value_check) {
     for(int i=0; i<200; ++i) {
         input = "test string " + std::to_string(i+1);
         EXPECT_NO_THROW(list_UT->insert(input)) << "failed on iteration: " << i << "\n";
-        EXPECT_EQ(input, list_UT->get_value_at(0)) << "failed on iteration: " << i << "\n";
+        EXPECT_EQ(input , list_UT->get_value_at(0)) << "failed on iteration: " << i << "\n";
     }
     for(int i=0; i<300; i+=2){
         input = "test string " + std::to_string(2*i+1);
@@ -284,6 +286,7 @@ TEST_F(Lab05Fixture, stack_push_pop_top_test){
     EXPECT_EQ("test string3",stack_UT->top());
 
     stack_UT->pop();
+    EXPECT_EQ(3, stack_UT -> stackSize() );
     EXPECT_EQ("test string2",stack_UT->top());
 
     stack_UT->pop();
@@ -568,6 +571,27 @@ TEST_F(Lab05Fixture, fancy_calculator_istream_ostream_test) {
     EXPECT_EQ("Infix: 49,*,(,17,*,(,3,+,2,*,(,12,+,2,*,(,45,-,43,),+,2,),),+,1,*,(,6,/,2,),)\nPostfix: 49,17,3,2,12,2,45,43,-,*,+,2,+,*,+,*,1,6,2,/,*,+,*",output);
 }
 
+TEST_F(Lab05Fixture, a) {
+    for(int i=0; i<200; ++i) {
+        input = "test string " + std::to_string(i+1);
+        EXPECT_NO_THROW(list_UT->insert(input)) << "failed on iteration: " << i << "\n";
+        EXPECT_EQ(input , list_UT->get_value_at(0)) << "failed on iteration: " << i << "\n";
+    }
+    for(int i=0; i<300; i+=2){
+        input = "test string " + std::to_string(2*i+1);
+        EXPECT_NO_THROW(list_UT->insert(input,i));
+        EXPECT_EQ(input, list_UT->get_value_at(i));
+    }
+    for (int i = 0; i < 100; ++i) {
+        input = "test string" + std::to_string(i*3);
+        EXPECT_NO_THROW(list_UT->append(input));
+        EXPECT_EQ(input,list_UT->get_value_at(list_UT->listSize()-1));
+    }
+
+    input = "test string " + std::to_string(4);
+    EXPECT_NO_THROW(list_UT->insert(input,list_UT -> listSize() -1));
+    EXPECT_EQ(input, list_UT->get_value_at(list_UT -> listSize() -1));
+}
 /***** end calculator tests*****/
 
 
