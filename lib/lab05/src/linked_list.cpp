@@ -1,88 +1,83 @@
 #include <linked_list.h>
 namespace lab5 {
     linked_list::linked_list() {
-        head = nullptr;
-        tail = nullptr;
+        head= nullptr;
+        tail= nullptr;
+
     }
 
     linked_list::linked_list(std::string &data) {
-        head = nullptr;
-        tail = nullptr;
+        head= nullptr;
+        tail= nullptr;
         append(data);
     }
 
     linked_list::linked_list(const linked_list &original) {
-        node* current_node = original.head;
-        for (int i=0; i< original.listSize() ; i++){
-            append(current_node -> data);
-            current_node = current_node -> next;
+        node* current_node= original.head;
+        for ( int i=0; i<original.listSize(); i++){
+            append(current_node->data);
+            current_node=current_node->next;
+
         }
+
     }
 
     linked_list::~linked_list() {
-        head = nullptr;
-        tail = nullptr;
+        head=nullptr;
+        tail=nullptr;
+
     }
 
     linked_list &lab5::linked_list::operator=(const linked_list &RHS) {
         //return <#initializer#>;
         if (this == &RHS)
             return *this;
-        else{
-            node* current_node = RHS.head;
-            for (int i=0; i< RHS.listSize() ; i++){
-                append(current_node -> data);
-                current_node = current_node -> next;
+        else {
+            node *current_node = RHS.head;
+            for (int i = 0; i < RHS.listSize(); i++) {
+                append(current_node->data);
+                current_node = current_node->next;
             }
             return *this;
+
         }
     }
 
 
     bool linked_list::isEmpty() const {
-        if (head == nullptr)
-            return true;
-        else
-            return false;
+        return head == nullptr? true: false;
+
     }
 
     unsigned linked_list::listSize() const {
-        node* count_node = head;
-        unsigned int count = 0;
-        if (head == nullptr)
-            count = 0;
-        else if (head != nullptr && head == tail)
-            count = 1;
-        else
-            while(count_node != nullptr){
-                count++;
-                count_node = count_node->next;
-            }
+        node* count_node= head;
+        int count=0;
+        while (count_node != nullptr){
+            count++;
+            count_node=count_node->next;
+        }
         return count;
+
     }
 
     void linked_list::insert(const std::string input, unsigned int location) {
         node* previous_node;
         node* current_node = head;
         node* temp_node = new node(input);
-        if ((location == 0 && head == nullptr)){
-            head = nullptr;
-            tail = nullptr;
+        if ((location == 0 && head == nullptr) || location == listSize())
             append(input);
-        }
+
+
         else if(location == 0 && head != nullptr){
             temp_node -> next = current_node ;
             head = temp_node ;
-            return;
+
         }
-        else if(location == 0 && head == tail && head != nullptr){
-            temp_node -> next = current_node;
-            head = temp_node;
-            tail = current_node;
-        }
+
         else if (location > listSize())
             throw std::out_of_range("Out of position.");
-        else if(location == listSize() -1){
+
+        else if(location == listSize()){
             append(input);
         }
         else{
@@ -101,7 +96,7 @@ namespace lab5 {
         if (head == nullptr){
             head = input_node;
             tail = input_node;
-            return;
+
         }
         else {
             tail->next = input_node;
@@ -120,9 +115,9 @@ namespace lab5 {
             throw std::out_of_range("Linked list is empty.");
         else if(head != nullptr && location == 0)
             head = head -> next;
-        else if(location == listSize() -1){
+        else if(location == listSize()-1 ){
             current_node = head;
-            for(int i = 0; i< listSize() -1 ; i++){
+            for(int i = 0; i< listSize()-1; i++){
                 previous_node = current_node;
                 current_node = current_node -> next;
             }

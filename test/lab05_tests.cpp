@@ -589,8 +589,8 @@ TEST_F(Lab05Fixture, a) {
     }
 
     input = "test string " + std::to_string(4);
-    EXPECT_NO_THROW(list_UT->insert(input,list_UT -> listSize() -1));
-    EXPECT_EQ(input, list_UT->get_value_at(list_UT -> listSize() -1));
+    EXPECT_NO_THROW(list_UT->insert(input,list_UT -> listSize()));
+    EXPECT_EQ(input, list_UT->get_value_at(list_UT -> listSize()-1));
 }
 /***** end calculator tests*****/
 
