@@ -4,24 +4,27 @@ namespace lab6{
     doubly_linked_list::doubly_linked_list() {
         head = nullptr;
         tail = nullptr;
+
     }
+
 
     doubly_linked_list::doubly_linked_list(int input) {
         head = nullptr;
         tail = nullptr;
         append(input);
+
     }
 
     doubly_linked_list::doubly_linked_list(std::vector<int> vector_input) {
         head = nullptr;
-        tail = nullptr;
+        tail  =nullptr;
         for (int i = 0 ; i < vector_input.size() ; i++)
             append(vector_input[i]);
     }
 
     doubly_linked_list::doubly_linked_list(const doubly_linked_list &original) {
         node* current_node = original.head;
-        this->head = nullptr;
+        this->head= nullptr;
         this->tail = nullptr;
         while(current_node != nullptr){
             this->append(current_node -> get_data());
@@ -30,8 +33,17 @@ namespace lab6{
     }
 
     doubly_linked_list::~doubly_linked_list() {
-        head = nullptr;
-        tail = nullptr;
+        node* current_node=head;
+        node* previous;
+        while(current_node && current_node->next){
+            previous=current_node;
+            current_node= current_node->next;
+            delete previous;
+        }
+        delete current_node;
+        head=nullptr;
+        tail=nullptr;
+
     }
 
     int doubly_linked_list::get_data(unsigned position) {
@@ -80,10 +92,8 @@ namespace lab6{
     }
 
     bool doubly_linked_list::is_empty() {
-        if (head == nullptr)
-            return true;
-        else
-            return false;
+        return (head == nullptr)? true: false;
+
     }
 
     void doubly_linked_list::append(int input) {
@@ -134,11 +144,10 @@ namespace lab6{
 
         if(location >= size())
             throw std::out_of_range("Out of position.");
-        else if(head == nullptr)
+        else if(head == nullptr && location == 0 )
             throw std::out_of_range("Linked list is empty.");
-        else if(head != nullptr && location == 0){
-            head = head -> next;
-        }
+        else if(head != nullptr && location == 0)
+            head = head-> next ;
         else if(location == size() -1){
             current_node = head;
             for(int i = 0; i< size() -1 ; i++){
@@ -167,21 +176,19 @@ namespace lab6{
     }
 
     doubly_linked_list doubly_linked_list::split(unsigned position) {
-        std::vector<int> set = this->get_set(position , this->size() -1);
-        lab6::doubly_linked_list *to_return;
-        to_return = new lab6::doubly_linked_list(set);
-        for(int i = size() - 1; i >= position && i >=0; i--)
+        doubly_linked_list split(get_set(position, size() - 1));
+        for (int i = size() - 1; i >= position && i >= 0; i--) {
             remove(i);
-        return *to_return;
+        }
+        return split;
     }
 
     doubly_linked_list doubly_linked_list::split_set(unsigned position_1, unsigned position_2) {
-        std::vector<int> set = get_set(position_1, position_2);
-        lab6::doubly_linked_list *to_return = new lab6::doubly_linked_list(set);
-        for(int i = position_2; i >= position_1; i--){
+        doubly_linked_list split_set(get_set(position_1,position_2));
+        for (int i = position_2; i>= position_1; i--){
             remove(i);
         }
-        return *to_return;
+        return split_set;
 
     }
 
@@ -191,13 +198,13 @@ namespace lab6{
         if (position_1 >= size() || position_2 >= size())
             throw std::out_of_range("Position out of bound");
         else{
-            for (int i = 0 ; i < position_1 ; i++){
+            for (int i = 0 ; i < position_1 ; i++)
                 Pos1_node = Pos1_node -> next;
-            }
 
-            for (int i = 0 ; i < position_2 ; i++){
+
+            for (int j = 0 ; j < position_2 ; j++)
                 Pos2_node = Pos2_node -> next;
-            }
+
             int i =(Pos1_node->get_data());
             int j =(Pos2_node->get_data());
             remove(position_2);

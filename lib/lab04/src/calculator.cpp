@@ -1,6 +1,8 @@
-#include "iostream"
+
 #include <string>
 #include "calculator.h"
+#include <iostream>
+
 namespace lab4 {
     bool is_number(std::string input_string);
     bool is_operator(std::string input_string);
