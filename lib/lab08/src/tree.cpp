@@ -1,5 +1,6 @@
 #include "../inc/tree.h"
 #include <iostream>
+#include <algorithm>
 
 namespace lab8 {
     void clear(node *to_clear);
@@ -8,12 +9,12 @@ namespace lab8 {
     int level_recursively(int value, int level, node* top);
     bool in_tree_recursively(int value, node* top);
     void path_to_recursively(int value, node* top);
-    unsigned size_recursively(node* top);
     unsigned depth_recursively(node* top);
     int get_frequency_recursively(int value, node* top);
     void to_string_recursively(std::string &to_return, node* top);
     void values_above_recursively(std::vector<int> &vector, int key, node *top);
     void delete_the_node(node* &top);
+
     // Construct an empty tree
 
     tree::tree() {
@@ -24,6 +25,7 @@ namespace lab8 {
     // Copy constructor
     tree::tree(const tree &copy) {
         copytree_recursively(this, *copy.root);
+        tree_size = this->tree_size;
     }
 
     void copytree_recursively(tree *paste,const node &copy){
@@ -42,10 +44,14 @@ namespace lab8 {
 
     // Insert
     void tree::insert(int value) {
-        if (root == nullptr)
+        if (root == nullptr){
             root = new node(value);
-        else
+            tree_size = 1;
+        }
+        else{
             insert_recursively(value, root);
+            tree_size++;
+        }
     }
 
     void insert_recursively(int value, node *top){
@@ -62,7 +68,7 @@ namespace lab8 {
                 insert_recursively(value, top->left);
         }
         else
-            top->frequency = top->frequency+1;
+            top->frequency = top->frequency + 1;
     }
 
     // Remove key return true if the key is deleted, and false if it isn't in the tree
@@ -94,6 +100,7 @@ namespace lab8 {
                 delete_the_node(previous_node -> left);
             else
                 delete_the_node(previous_node -> right);
+            tree_size--;
             return found;
         }
     }
@@ -177,15 +184,9 @@ namespace lab8 {
 
     // Number of items in the tree
     unsigned tree::size() {
-        return size_recursively(root);
+        return tree_size;
     }
 
-    unsigned size_recursively(node* top){
-        if (top != nullptr)
-            return top->frequency + size_recursively(top->left) + size_recursively(top-> right);
-        else
-            return 0;
-    }
 
     // Calculate the depth of the tree, longest string of connections
     unsigned tree::depth() {
@@ -317,8 +318,8 @@ namespace lab8 {
 
     // Balance the tree using any published algorithm. Demo to a TA for credit
     void tree::balance() {
-
     }
+
 
     /*********************************************************************
      * Recursion Example                                                 *
