@@ -28,6 +28,7 @@ include_directories(lib/lab01/inc
         lib/lab06/inc
         lib/lab07/inc
         lib/lab08/inc
+        lib/lab09/inc
         #[[lib/lab8/inc]]
         )
 
@@ -39,7 +40,7 @@ add_subdirectory(lib/lab05 lab5_lib)
 add_subdirectory(lib/lab06 lab6_lib)
 add_subdirectory(lib/lab07 lab7_lib)
 add_subdirectory(lib/lab08 lab8_lib)
-#[[add_subdirectory(lib/lab09 lab9_lib)]]
+add_subdirectory(lib/lab09 lab9_lib)
 
 add_subdirectory(test)
 
@@ -52,5 +53,5 @@ target_link_libraries(labs_main
         lab6_lib
         lab7_lib
         lab8_lib
-        #[[lab9_lib]]
+        lab9_lib
         )
