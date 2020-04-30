@@ -225,3 +225,30 @@ std::string gen_random() {
     s[len] = 0;
     return std::string(s);
 }
+
+TEST_F(Lab09Fixture, to_string) {
+    // Linear
+    lab9::hash_table tablel('l');
+    // Quadratic
+    lab9::hash_table tableq('q');
+    // Double Hash
+    lab9::hash_table tabled('d');
+
+    // Testing valid inserts on an empty linear probing table.
+
+    EXPECT_TRUE(tablel.insert("abc", 5));
+    EXPECT_TRUE(tablel.insert("bcd", 6));
+    EXPECT_TRUE(tablel.insert("cde", 7));
+    EXPECT_EQ(tablel.to_string(), std::string("4 cde:7\n21 abc:5\n28 bcd:6\n"));
+
+    EXPECT_TRUE(tableq.insert("xyz", 5));
+    EXPECT_TRUE(tableq.insert("asd", 6));
+    EXPECT_TRUE(tableq.insert("gdbhg", 7));
+    EXPECT_EQ(tableq.to_string(), std::string("25 asd:6\n27 xyz:5\n28 gdbhg:7\n"));
+
+    EXPECT_TRUE(tabled.insert("abc", 5));
+    EXPECT_TRUE(tabled.insert("bcd", 6));
+    EXPECT_TRUE(tabled.insert("cde", 7));
+    EXPECT_EQ(tablel.to_string(), tabled.to_string());
+
+}
