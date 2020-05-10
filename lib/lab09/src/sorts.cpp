@@ -37,23 +37,27 @@ namespace lab6 {
     }
 
     void mergesort(doubly_linked_list& to_sort){
-        recursive_merge_sort(to_sort);
+        doubly_linked_list to_return = recursive_merge_sort(to_sort);
+        while(!to_sort.is_empty()){
+            to_sort.remove(0);
+        }
+        to_sort = to_return;
     }
 
     doubly_linked_list recursive_merge_sort(doubly_linked_list to_sort){
-        if (to_sort.size() >= 2){
-            doubly_linked_list left = to_sort;
-            doubly_linked_list right;
-            if (to_sort.size() % 2 !=0)
-                right = left.split(left.size() / 2 +1);
-            else
-                right = left.split(left.size());
-            recursive_merge_sort(left);
-            recursive_merge_sort(right);
-            to_sort = merge(left, right);
+        if (to_sort.size() <= 1)
             return to_sort;
+        else{
+            doubly_linked_list left;
+            doubly_linked_list right;
+            for (int i = 0; i < to_sort.size(); i++){
+                if (i < to_sort.size() / 2)
+                    left.append(to_sort.get_data(i));
+                else
+                    right.append(to_sort.get_data(i));
+            }
+            return merge(recursive_merge_sort(left), recursive_merge_sort(right));
         }
-
     }
 
     //Used for the merging the two lists
@@ -65,10 +69,10 @@ namespace lab6 {
         doubly_linked_list to_return;
         bool run = true;
         while (run){
-            if (left.is_empty() && right.is_empty())
+            if (left.is_empty() || right.is_empty())
                 run = false;
             else{
-                if(left.get_data(0) <= right.get_data(0) || right.is_empty()){
+                if(left.get_data(0) <= right.get_data(0)){
                     to_return.append(left.get_data(0));
                     left.remove(0);
                 }
@@ -77,6 +81,14 @@ namespace lab6 {
                     right.remove(0);
                 }
             }
+        }
+        while(!left.is_empty()){
+            to_return.append(left.get_data(0));
+            left.remove(0);
+        }
+        while(!right.is_empty()){
+            to_return.append(right.get_data(0));
+            right.remove(0);
         }
         return to_return;
     }

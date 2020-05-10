@@ -252,3 +252,21 @@ TEST_F(Lab09Fixture, to_string) {
     EXPECT_EQ(tablel.to_string(), tabled.to_string());
 
 }
+TEST_F(Lab09Fixture, merge_sortTests) {
+    lab6::doubly_linked_list list;
+    list.append(10);
+    list.append(66);
+    list.append(55);
+    list.append(22);
+    list.append(1);
+    list.append(3);
+    list.append(100);
+    list.append(99);
+    list.append(22);
+    list.append(15);
+    int arr[10] = {1,3,10,15,22,22,55,66,99,100};
+    lab6::mergesort(list);
+    for (int i = 0; i < list.size(); i++) {
+        EXPECT_EQ(arr[i], list.get_data(i));
+    }
+}
